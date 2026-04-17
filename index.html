@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              secondary: "#b5d25e",
+              "on-primary-fixed-variant": "#3c4d00",
+              "surface-variant": "#353534",
+              "on-primary-fixed": "#161e00",
+              "on-surface-variant": "#c4c9ac",
+              "error-container": "#93000a",
+              "on-background": "#e5e2e1",
+              "on-tertiary-fixed": "#380038",
+              "primary-container": "#c3f400",
+              "on-primary": "#283500",
+              primary: "#CCFF00",
+              error: "#ffb4ab",
+              background: "#131313",
+              "tertiary-container": "#ffd7f5",
+              "surface-tint": "#abd600",
+              "primary-fixed": "#c3f400",
+              "on-secondary-fixed-variant": "#3c4d00",
+              "on-tertiary-container": "#b300b3",
+              "surface-container-low": "#1c1b1b",
+              "outline-variant": "#444933",
+              "primary-fixed-dim": "#abd600",
+              "surface-container-lowest": "#0e0e0e",
+              "on-secondary": "#283500",
+              "on-error": "#690005",
+              "secondary-container": "#5d7602",
+              "surface-container-high": "#2a2a2a",
+              "surface-container": "#201f1f",
+              "on-primary-container": "#556d00",
+              "secondary-fixed-dim": "#b5d25e",
+              "on-tertiary": "#5b005b",
+              outline: "#8e9379",
+              "surface-dim": "#131313",
+              "inverse-surface": "#e5e2e1",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed-dim": "#ffabf3",
+              "on-secondary-container": "#defd83",
+              "secondary-fixed": "#d0ef77",
+              "on-surface": "#e5e2e1",
+              "inverse-on-surface": "#313030",
+              "on-tertiary-fixed-variant": "#810081",
+              "tertiary-fixed": "#ffd7f5",
+              "on-error-container": "#ffdad6",
+              "on-secondary-fixed": "#161e00",
+              "surface-bright": "#3a3939",
+              "inverse-primary": "#506600",
+              surface: "#131313",
+              tertiary: "#FF00FF",
+            },
+            borderRadius: {
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "0px",
+            },
+            fontFamily: {
+              headline: ["Space Grotesk"],
+              body: ["Inter"],
+              label: ["Space Grotesk"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      body {
+        background-color: #0A0A0A;
+        color: #e5e2e1;
+        font-family: "Inter", sans-serif;
+      }
+      .anarchy-glitch {
+        position: relative;
+        border: 2px solid #FF00FF;
+      }
+      .anarchy-glitch::after {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: -6px;
+        bottom: -6px;
+        border: 2px solid #FF00FF;
+        z-index: -1;
+        opacity: 0.5;
+      }
+    </style>
+    <title>clone_trello</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

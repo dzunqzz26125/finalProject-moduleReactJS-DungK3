@@ -1,0 +1,497 @@
+{
+  "users": [
+    {
+      "email": "vuhoangdung26122005@gmail.com",
+      "password": "$2a$10$ukI5I8DuP9EqTaUG2fKcReDUFlIevxBMIlzvMBtHxM0PtdcUAWUk2",
+      "name": "Dung Vu",
+      "role": "admin",
+      "id": 1
+    },
+    {
+      "email": "vuhoangdung261205@gmail.com",
+      "password": "$2a$10$wSspyfb40VrX4bTmSvV7su3qBeYYFjMEj1PPuaaPT.uYrmGusW1.6",
+      "name": "Member One",
+      "role": "user",
+      "id": 2
+    }
+  ],
+  "workspaces": [
+    {
+      "id": 1,
+      "name": "Project Alpha",
+      "description": "Main workspace",
+      "ownerId": 1,
+      "color": "#0079bf",
+      "createdAt": "2026-01-01"
+    }
+  ],
+  "workspace_members": [
+    {
+      "id": 1,
+      "workspaceId": 1,
+      "userId": 1,
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "workspaceId": 1,
+      "userId": 2,
+      "role": "member"
+    }
+  ],
+  "boards": [
+    {
+      "id": 1,
+      "workspaceId": 1,
+      "name": "Sprint Board",
+      "color": "#0079bf",
+      "createdBy": 1,
+      "createdAt": "2026-01-01"
+    },
+    {
+      "color": "#51e898",
+      "workspaceId": 1,
+      "name": "DungVu WorkSpace",
+      "createdBy": 1,
+      "createdAt": "2026-04-16",
+      "id": 2
+    }
+  ],
+  "lists": [
+    {
+      "id": 1,
+      "boardId": 1,
+      "name": "Todo",
+      "order": 0
+    },
+    {
+      "id": 2,
+      "boardId": 1,
+      "name": "In Progress",
+      "order": 1
+    },
+    {
+      "id": 3,
+      "boardId": 1,
+      "name": "Review",
+      "order": 2
+    },
+    {
+      "id": 4,
+      "boardId": 1,
+      "name": "Done",
+      "order": 3
+    },
+    {
+      "boardId": 2,
+      "name": "Todo",
+      "order": 0,
+      "id": 5
+    },
+    {
+      "boardId": 2,
+      "name": "Done",
+      "order": 2,
+      "id": 6
+    },
+    {
+      "boardId": 2,
+      "name": "In Progress",
+      "order": 1,
+      "id": 7
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "New Task",
+      "description": "task for new project",
+      "deadline": "2026-04-12",
+      "createAt": "2026-04-09",
+      "createBy": "vuhoangdung26122005@gmail.com",
+      "priority": "medium",
+      "assignees": [
+        "vuhoangdung26122005@gmail.com"
+      ],
+      "status": "done",
+      "tags": "IT",
+      "labels": [
+        "blue"
+      ],
+      "checklist": [],
+      "projectId": 1,
+      "boardId": 1,
+      "listId": 4,
+      "order": 0
+    },
+    {
+      "title": "Bao cao project",
+      "description": "hoan thanh va bao cao final project",
+      "deadline": "2026-04-21",
+      "priority": "high",
+      "status": "in_progress",
+      "tags": "hard task",
+      "labels": [
+        "yellow"
+      ],
+      "assignees": [
+        "vuhoangdung26122005@gmail.com",
+        "dungvhph52084@gmail.com",
+        "vuhoangdung261205@gmail.com"
+      ],
+      "createBy": "Dung Vu",
+      "createAt": "2026-04-16",
+      "boardId": 1,
+      "listId": 2,
+      "projectId": 1,
+      "id": 2,
+      "order": 1,
+      "checklist": [
+        {
+          "text": "CRUD",
+          "done": true
+        },
+        {
+          "text": "Reg, Login",
+          "done": true
+        },
+        {
+          "text": "Features",
+          "done": false
+        }
+      ]
+    },
+    {
+      "title": "Bao cao project",
+      "description": "hoan thien va bao cao final project module react",
+      "deadline": "2026-04-21",
+      "priority": "critical",
+      "status": "todo",
+      "tags": "",
+      "labels": [
+        "green"
+      ],
+      "assignees": [
+        "vuhoangdung26122005@gmail.com"
+      ],
+      "createBy": "Dung Vu",
+      "createAt": "2026-04-17",
+      "boardId": 2,
+      "listId": 5,
+      "projectId": 1,
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "text": "Initial comment",
+      "createdAt": "2026-04-09T10:00:00.000Z"
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "text": "cac chuc nang van chua hoan thien",
+      "createdAt": "2026-04-16T23:28:13.737Z",
+      "id": 2
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "created task",
+      "createdAt": "2026-04-09T10:00:00.000Z"
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "created task",
+      "createdAt": "2026-04-16T22:38:02.394Z",
+      "id": 2
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "edited task",
+      "createdAt": "2026-04-16T22:41:41.530Z",
+      "id": 3
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "edited task",
+      "createdAt": "2026-04-16T22:43:47.811Z",
+      "id": 4
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T22:45:32.958Z",
+      "id": 5
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T22:45:38.478Z",
+      "id": 6
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T22:45:40.641Z",
+      "id": 7
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T22:45:46.471Z",
+      "id": 8
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T23:14:27.706Z",
+      "id": 9
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T23:14:31.036Z",
+      "id": 10
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T23:14:34.527Z",
+      "id": 11
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T23:14:36.768Z",
+      "id": 12
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T23:14:43.370Z",
+      "id": 13
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T23:14:45.020Z",
+      "id": 14
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T23:14:50.838Z",
+      "id": 15
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T23:19:28.420Z",
+      "id": 16
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T23:19:31.867Z",
+      "id": 17
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "added a comment",
+      "createdAt": "2026-04-16T23:28:13.770Z",
+      "id": 18
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Done",
+      "createdAt": "2026-04-16T23:28:34.262Z",
+      "id": 19
+    },
+    {
+      "taskId": 2,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-16T23:28:36.194Z",
+      "id": 20
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Review",
+      "createdAt": "2026-04-16T23:28:37.490Z",
+      "id": 21
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Done",
+      "createdAt": "2026-04-16T23:28:38.527Z",
+      "id": 22
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-16T23:28:40.869Z",
+      "id": 23
+    },
+    {
+      "taskId": 1,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Done",
+      "createdAt": "2026-04-16T23:28:42.050Z",
+      "id": 24
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "created task",
+      "createdAt": "2026-04-17T02:03:29.030Z",
+      "id": 25
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Done",
+      "createdAt": "2026-04-17T02:03:50.743Z",
+      "id": 26
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-17T02:03:52.060Z",
+      "id": 27
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-17T02:03:53.076Z",
+      "id": 28
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-17T02:03:53.851Z",
+      "id": 29
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-17T02:03:54.860Z",
+      "id": 30
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-17T02:04:52.700Z",
+      "id": 31
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-17T02:04:53.772Z",
+      "id": 32
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Done",
+      "createdAt": "2026-04-17T02:04:56.328Z",
+      "id": 33
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to In Progress",
+      "createdAt": "2026-04-17T02:04:57.200Z",
+      "id": 34
+    },
+    {
+      "taskId": 3,
+      "userId": 1,
+      "userName": "Dung Vu",
+      "action": "moved task to Todo",
+      "createdAt": "2026-04-17T02:04:57.766Z",
+      "id": 35
+    }
+  ],
+  "notifications": [],
+  "invites": [],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
