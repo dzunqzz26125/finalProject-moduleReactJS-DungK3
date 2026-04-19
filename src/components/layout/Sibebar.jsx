@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import api from "../mock/api";
+import api from "../../mock/api";
 
 const navItems = [
   { to: "/app/dashboard", icon: "analytics", label: "DASHBOARD" },
   { to: "/app/workspaces", icon: "grid_view", label: "WORKSPACES" },
-  { to: "/app/task", icon: "bolt", label: "BOARD" },
+  { to: "/app/calendar", icon: "calendar_month", label: "CALENDAR" },
   { to: "/app/notifications", icon: "notifications", label: "NOTIFICATIONS" },
 ];
 

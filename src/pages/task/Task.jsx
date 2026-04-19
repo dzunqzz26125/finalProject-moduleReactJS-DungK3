@@ -16,8 +16,8 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import TaskForm from "./TaskForm";
-import TaskDetail from "../components/TaskDetail";
-import api from "../mock/api";
+import TaskDetail from "../../components/taskDetail/TaskDetail";
+import api from "../../mock/api";
 
 const COLUMNS = [
   { status: "todo", label: "To Do", color: "border-blue-400" },
@@ -342,8 +342,20 @@ const Task = () => {
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
   );
 
+  const currentUser = JSON.parse(localStorage.getItem("users") || "null");
+
   const fetchTasks = () => {
-    api.get("/tasks").then((res) => setTasks(res.data));
+    api.get("/tasks").then((res) => {
+      const filtered = currentUser
+        ? res.data.filter(
+            (t) =>
+              t.createBy === currentUser.name ||
+              t.createBy === currentUser.email ||
+              (t.assignees || []).includes(currentUser.email),
+          )
+        : res.data;
+      setTasks(filtered);
+    });
   };
 
   useEffect(() => {

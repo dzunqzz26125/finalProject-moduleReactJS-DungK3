@@ -11,32 +11,38 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import api from "../mock/api";
-
-const COLORS = {
-  todo: "#3b82f6",
-  in_progress: "#f59e0b",
-  review: "#8b5cf6",
-  done: "#22c55e",
-};
-const PRIORITY_COLORS = {
-  low: "#22c55e",
-  medium: "#f59e0b",
-  high: "#f97316",
-  critical: "#ef4444",
-};
+import api from "../../mock/api";
+import { COLORS, PRIORITY_COLORS } from "./dbConstant";
 
 const StatCard = ({ label, value, icon, color }) => (
   <div
     className="border rounded-xl p-5 flex items-center gap-4 transition-colors"
-    style={{ backgroundColor: "var(--bg-elevated)", borderColor: "var(--border)" }}
+    style={{
+      backgroundColor: "var(--bg-elevated)",
+      borderColor: "var(--border)",
+    }}
   >
-    <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: color + "22" }}>
-      <span className="material-symbols-outlined" style={{ color }}>{icon}</span>
+    <div
+      className="w-12 h-12 rounded-xl flex items-center justify-center"
+      style={{ backgroundColor: color + "22" }}
+    >
+      <span className="material-symbols-outlined" style={{ color }}>
+        {icon}
+      </span>
     </div>
     <div>
-      <p className="text-[10px] uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{label}</p>
-      <p className="text-2xl font-black font-['Space_Grotesk']" style={{ color: "var(--text-primary)" }}>{value}</p>
+      <p
+        className="text-[10px] uppercase tracking-widest"
+        style={{ color: "var(--text-muted)" }}
+      >
+        {label}
+      </p>
+      <p
+        className="text-2xl font-black font-['Space_Grotesk']"
+        style={{ color: "var(--text-primary)" }}
+      >
+        {value}
+      </p>
     </div>
   </div>
 );
@@ -45,6 +51,7 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [boards, setBoards] = useState([]);
   const [workspaces, setWorkspaces] = useState([]);
+  const currentUser = JSON.parse(localStorage.getItem("users") || "{}");
 
   useEffect(() => {
     Promise.all([
@@ -52,7 +59,14 @@ const Dashboard = () => {
       api.get("/boards"),
       api.get("/workspaces"),
     ]).then(([t, b, w]) => {
-      setTasks(t.data);
+      const allTasks = t.data;
+      const filtered =
+        currentUser.role === "admin"
+          ? allTasks
+          : allTasks.filter((task) =>
+              (task.assignees || []).includes(currentUser.email),
+            );
+      setTasks(filtered);
       setBoards(b.data);
       setWorkspaces(w.data);
     });
@@ -84,9 +98,15 @@ const Dashboard = () => {
   }));
 
   return (
-    <div className="ml-64 pt-20 p-8 min-h-screen transition-colors" style={{ backgroundColor: "var(--bg-base)" }}>
+    <div
+      className="ml-64 pt-20 p-8 min-h-screen transition-colors"
+      style={{ backgroundColor: "var(--bg-base)" }}
+    >
       <header className="mb-8">
-        <h1 className="text-2xl font-black uppercase tracking-tighter font-['Space_Grotesk']" style={{ color: "var(--accent)" }}>
+        <h1
+          className="text-2xl font-black uppercase tracking-tighter font-['Space_Grotesk']"
+          style={{ color: "var(--accent)" }}
+        >
           Dashboard
         </h1>
         <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
@@ -96,16 +116,47 @@ const Dashboard = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard label="Total Tasks" value={tasks.length} icon="task_alt" color="var(--accent)" />
-        <StatCard label="Completed" value={doneCount} icon="check_circle" color="#22c55e" />
-        <StatCard label="Overdue" value={overdue.length} icon="warning" color="#ef4444" />
-        <StatCard label="Boards" value={boards.length} icon="dashboard" color="#8b5cf6" />
+        <StatCard
+          label="Total Tasks"
+          value={tasks.length}
+          icon="task_alt"
+          color="var(--accent)"
+        />
+        <StatCard
+          label="Completed"
+          value={doneCount}
+          icon="check_circle"
+          color="#22c55e"
+        />
+        <StatCard
+          label="Overdue"
+          value={overdue.length}
+          icon="warning"
+          color="#ef4444"
+        />
+        <StatCard
+          label="Boards"
+          value={boards.length}
+          icon="dashboard"
+          color="#8b5cf6"
+        />
       </div>
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <div className="border rounded-xl p-6 transition-colors" style={{ backgroundColor: "var(--bg-elevated)", borderColor: "var(--border)" }}>
-          <h3 className="font-bold uppercase tracking-wide text-sm mb-4" style={{ color: "var(--text-primary)" }}>Tasks by Status</h3>
+        <div
+          className="border rounded-xl p-6 transition-colors"
+          style={{
+            backgroundColor: "var(--bg-elevated)",
+            borderColor: "var(--border)",
+          }}
+        >
+          <h3
+            className="font-bold uppercase tracking-wide text-sm mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Tasks by Status
+          </h3>
           {statusData.length > 0 ? (
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
@@ -146,10 +197,25 @@ const Dashboard = () => {
           )}
         </div>
 
-        <div className="border rounded-xl p-6 transition-colors" style={{ backgroundColor: "var(--bg-elevated)", borderColor: "var(--border)" }}>
-          <h3 className="font-bold uppercase tracking-wide text-sm mb-4" style={{ color: "var(--text-primary)" }}>Tasks by Priority</h3>
+        <div
+          className="border rounded-xl p-6 transition-colors"
+          style={{
+            backgroundColor: "var(--bg-elevated)",
+            borderColor: "var(--border)",
+          }}
+        >
+          <h3
+            className="font-bold uppercase tracking-wide text-sm mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Tasks by Priority
+          </h3>
           <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={priorityData} barSize={32} style={{ cursor: "default" }}>
+            <BarChart
+              data={priorityData}
+              barSize={32}
+              style={{ cursor: "default" }}
+            >
               <XAxis
                 dataKey="name"
                 tick={{ fill: "#8e9379", fontSize: 10 }}
@@ -170,7 +236,12 @@ const Dashboard = () => {
                   fontSize: 12,
                 }}
               />
-              <Bar dataKey="count" radius={[4, 4, 0, 0]} isAnimationActive={false} activeBar={false}>
+              <Bar
+                dataKey="count"
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={false}
+                activeBar={false}
+              >
                 {priorityData.map((entry, i) => (
                   <Cell key={i} fill={entry.fill} />
                 ))}
@@ -182,10 +253,25 @@ const Dashboard = () => {
 
       {/* Board breakdown */}
       {boardTaskData.length > 0 && (
-        <div className="border rounded-xl p-6 mb-8 transition-colors" style={{ backgroundColor: "var(--bg-elevated)", borderColor: "var(--border)" }}>
-          <h3 className="font-bold uppercase tracking-wide text-sm mb-4" style={{ color: "var(--text-primary)" }}>Tasks per Board</h3>
+        <div
+          className="border rounded-xl p-6 mb-8 transition-colors"
+          style={{
+            backgroundColor: "var(--bg-elevated)",
+            borderColor: "var(--border)",
+          }}
+        >
+          <h3
+            className="font-bold uppercase tracking-wide text-sm mb-4"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Tasks per Board
+          </h3>
           <ResponsiveContainer width="100%" height={180}>
-            <BarChart data={boardTaskData} barSize={40} style={{ cursor: "default" }}>
+            <BarChart
+              data={boardTaskData}
+              barSize={40}
+              style={{ cursor: "default" }}
+            >
               <XAxis
                 dataKey="name"
                 tick={{ fill: "#8e9379", fontSize: 10 }}
@@ -206,7 +292,13 @@ const Dashboard = () => {
                   fontSize: 12,
                 }}
               />
-              <Bar dataKey="tasks" fill="#CCFF00" radius={[4, 4, 0, 0]} isAnimationActive={false} activeBar={false} />
+              <Bar
+                dataKey="tasks"
+                fill="#CCFF00"
+                radius={[4, 4, 0, 0]}
+                isAnimationActive={false}
+                activeBar={false}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -214,19 +306,40 @@ const Dashboard = () => {
 
       {/* Overdue tasks */}
       {overdue.length > 0 && (
-        <div className="border border-red-500/30 rounded-xl p-6 transition-colors" style={{ backgroundColor: "var(--bg-elevated)" }}>
+        <div
+          className="border border-red-500/30 rounded-xl p-6 transition-colors"
+          style={{ backgroundColor: "var(--bg-elevated)" }}
+        >
           <h3 className="text-red-400 font-bold uppercase tracking-wide text-sm mb-4 flex items-center gap-2">
-            <span className="material-symbols-outlined text-[18px]">warning</span>
+            <span className="material-symbols-outlined text-[18px]">
+              warning
+            </span>
             Overdue Tasks ({overdue.length})
           </h3>
           <div className="space-y-2">
             {overdue.map((t) => (
-              <div key={t.id} className="flex items-center justify-between px-4 py-3 rounded-lg transition-colors" style={{ backgroundColor: "var(--bg-surface)" }}>
+              <div
+                key={t.id}
+                className="flex items-center justify-between px-4 py-3 rounded-lg transition-colors"
+                style={{ backgroundColor: "var(--bg-surface)" }}
+              >
                 <div>
-                  <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>{t.title}</p>
-                  <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>{t.assignees?.join(", ")}</p>
+                  <p
+                    className="text-sm font-medium"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {t.title}
+                  </p>
+                  <p
+                    className="text-[10px]"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {t.assignees?.join(", ")}
+                  </p>
                 </div>
-                <span className="text-red-400 text-xs font-bold">{t.deadline}</span>
+                <span className="text-red-400 text-xs font-bold">
+                  {t.deadline}
+                </span>
               </div>
             ))}
           </div>

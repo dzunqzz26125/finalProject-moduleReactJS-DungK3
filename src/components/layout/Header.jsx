@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../mock/api";
-import { useTheme } from "../lib/ThemeContext";
+import api from "../../mock/api";
+import { useTheme } from "../../lib/ThemeContext";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -60,7 +60,9 @@ const Header = () => {
               className="font-['Space_Grotesk'] uppercase tracking-tighter text-sm transition-colors"
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={(e) => (e.target.style.color = "var(--accent)")}
-              onMouseLeave={(e) => (e.target.style.color = "var(--text-primary)")}
+              onMouseLeave={(e) =>
+                (e.target.style.color = "var(--text-primary)")
+              }
             >
               {label}
             </Link>
@@ -100,7 +102,10 @@ const Header = () => {
         >
           <div
             className="w-8 h-8 flex items-center justify-center font-black text-sm"
-            style={{ backgroundColor: "var(--accent)", color: "var(--accent-text)" }}
+            style={{
+              backgroundColor: "var(--accent)",
+              color: "var(--accent-text)",
+            }}
           >
             {(user?.name || user?.email || "U")[0].toUpperCase()}
           </div>
@@ -130,10 +135,16 @@ const Header = () => {
               >
                 {user?.name || "User"}
               </p>
-              <p className="text-[10px] truncate" style={{ color: "var(--text-muted)" }}>
+              <p
+                className="text-[10px] truncate"
+                style={{ color: "var(--text-muted)" }}
+              >
                 {user?.email}
               </p>
-              <p className="text-[10px] uppercase" style={{ color: "var(--text-faint)" }}>
+              <p
+                className="text-[10px] uppercase"
+                style={{ color: "var(--text-faint)" }}
+              >
                 {user?.role}
               </p>
             </div>
@@ -142,7 +153,9 @@ const Header = () => {
               className="w-full flex items-center gap-3 px-4 py-3 transition-all font-['Space_Grotesk'] text-xs font-bold uppercase tracking-wider"
               style={{ color: "var(--text-primary)" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#FF00FF")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = "var(--text-primary)")
+              }
             >
               <span className="material-symbols-outlined text-sm">logout</span>
               LOGOUT

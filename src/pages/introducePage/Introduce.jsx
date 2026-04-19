@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../components/introducePage/Header";
-import Footer from "../components/Footer";
+import Header from "../introducePage/components/Header";
+import Footer from "../introducePage/components/Footer";
 import { Link } from "react-router-dom";
 
 const Introduce = () => {
@@ -19,8 +19,8 @@ const Introduce = () => {
               </h1>
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-12">
                 <p className="font-body text-xl md:text-2xl text-on-surface max-w-xl border-l-4 border-[#FF00FF] pl-6 py-2">
-                  Linear management is dead. Build at the speed of thought with an
-                  engine designed for mathematical precision and aggressive
+                  Linear management is dead. Build at the speed of thought with
+                  an engine designed for mathematical precision and aggressive
                   intentionality.
                 </p>
               </div>
@@ -30,7 +30,9 @@ const Introduce = () => {
                   className="group relative inline-flex items-center justify-center px-12 py-6 bg-[#CCFF00] text-[#283500] font-headline font-black text-xl tracking-widest hover:scale-105 active:scale-95 transition-all duration-150 shadow-[8px_8px_0px_0px_#FF00FF]"
                 >
                   GET STARTED
-                  <span className="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                  <span className="material-symbols-outlined ml-3 group-hover:translate-x-1 transition-transform">
+                    arrow_forward
+                  </span>
                 </Link>
               </div>
             </div>
@@ -41,12 +43,14 @@ const Introduce = () => {
                   <div className="w-3 h-3 rounded-full bg-red-500"></div>
                   <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                   <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                  <span className="ml-4 text-[10px] text-[#8e9379] font-['Space_Grotesk'] uppercase tracking-widest">anarchy.projects // board_view</span>
+                  <span className="ml-4 text-[10px] text-[#8e9379] font-['Space_Grotesk'] uppercase tracking-widest">
+                    anarchy.projects // board_view
+                  </span>
                 </div>
                 <img
                   src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&q=80"
                   alt="Project board preview"
-                  className="w-full h-[480px] object-cover object-top opacity-80 mt-8"
+                  className="w-full h-120 object-cover object-top opacity-80 mt-8"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#131313] via-transparent to-transparent mt-8"></div>
                 <div className="absolute bottom-6 left-6 right-6">
@@ -54,7 +58,9 @@ const Introduce = () => {
                     <div className="h-1 flex-1 bg-[#CCFF00]/30 rounded-full overflow-hidden">
                       <div className="h-full w-2/3 bg-[#CCFF00] rounded-full"></div>
                     </div>
-                    <span className="text-[#CCFF00] text-xs font-black font-['Space_Grotesk']">67% COMPLETE</span>
+                    <span className="text-[#CCFF00] text-xs font-black font-['Space_Grotesk']">
+                      67% COMPLETE
+                    </span>
                   </div>
                 </div>
               </div>
@@ -146,7 +152,7 @@ const Introduce = () => {
                       dashboard
                     </span>
                   </div>
-                  <h4 className="font-headline font-bold text-lg">
+                  <h4 className="font-headline font-bold text-lg text-white">
                     NEON LABS / Q4_SPRINT
                   </h4>
                 </div>
@@ -162,7 +168,7 @@ const Introduce = () => {
                     <span className="font-headline text-[10px] text-[#CCFF00] font-bold">
                       TODO
                     </span>
-                    <p className="font-body text-sm mt-2 font-semibold uppercase">
+                    <p className="font-body text-sm mt-2 font-semibold text-white uppercase">
                       Refactor Core API
                     </p>
                     <div className="mt-4 flex justify-between items-center">
@@ -178,7 +184,7 @@ const Introduce = () => {
                     <span className="font-headline text-[10px] text-outline font-bold">
                       TODO
                     </span>
-                    <p className="font-body text-sm mt-2 font-semibold uppercase">
+                    <p className="font-body text-sm mt-2 font-semibold text-white uppercase">
                       Implement Auth0
                     </p>
                     <div className="mt-4 flex justify-between items-center">
@@ -193,7 +199,7 @@ const Introduce = () => {
                     <span className="font-headline text-[10px] text-[#FF00FF] font-bold">
                       ACTIVE
                     </span>
-                    <p className="font-body text-sm mt-2 font-semibold uppercase">
+                    <p className="font-body text-sm mt-2 font-semibold text-white uppercase">
                       UI System Audit
                     </p>
                     <div className="mt-4 w-full h-1 bg-surface-container-high">
@@ -211,7 +217,7 @@ const Introduce = () => {
                     <span className="font-headline text-[10px] text-secondary font-bold">
                       REVIEW
                     </span>
-                    <p className="font-body text-sm mt-2 font-semibold uppercase">
+                    <p className="font-body text-sm mt-2 font-semibold text-white uppercase">
                       Database Migration
                     </p>
                     <div className="mt-4 flex -space-x-2">
@@ -226,7 +232,7 @@ const Introduce = () => {
         </section>
         <section className="py-32 px-6 md:px-24 bg-[#1C1B1B]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-            <div className="bg-[#131313] p-12 aspect-square flex flex-col justify-between border-2 border-[#CCFF00] hover:bg-[#CCFF00] group transition-all duration-300">
+            <div className="bg-[#131313] p-12 aspect-square flex flex-col justify-between hover:border-[#CCFF00] hover:bg-[#CCFF00] group transition-all duration-300">
               <span className="font-headline text-5xl font-black text-[#CCFF00] group-hover:text-[#0A0A0A]">
                 01
               </span>
@@ -241,7 +247,7 @@ const Introduce = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-[#131313] p-12 aspect-square flex flex-col justify-between border-2 border-outline-variant/20 hover:border-[#FF00FF] transition-all duration-300 relative overflow-hidden">
+            <div className="bg-[#131313] p-12 aspect-square flex flex-col justify-between border-2 border-outline-variant/20 hover:border-[#FF00FF] hover:bg-[#FF00FF] group transition-all duration-300 relative overflow-hidden">
               <div className="absolute -right-8 -top-8 w-24 h-24 bg-[#FF00FF] rotate-45 opacity-20"></div>
               <span className="font-headline text-5xl font-black text-outline">
                 02
@@ -257,7 +263,7 @@ const Introduce = () => {
                 </p>
               </div>
             </div>
-            <div className="bg-[#131313] p-12 aspect-square flex flex-col justify-between border-2 border-outline-variant/20 hover:border-[#CCFF00] transition-all duration-300">
+            <div className="bg-[#131313] p-12 aspect-square flex flex-col justify-between border-2 border-outline-variant/20 hover:border-[#CCFF00] hover:bg-[#CCFF00] group transition-all duration-300">
               <span className="font-headline text-5xl font-black text-outline">
                 03
               </span>

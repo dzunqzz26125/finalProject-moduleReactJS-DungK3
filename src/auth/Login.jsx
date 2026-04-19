@@ -23,15 +23,22 @@ const Login = () => {
     resolver: zodResolver(registerSchema),
   });
   const nav = useNavigate();
+  const [loading, setLoading] = React.useState(false);
   const onHandleSubmit = async (data) => {
     try {
+      setLoading(true);
       const res = await api.post("/login", data);
       localStorage.setItem("users", JSON.stringify(res.data.user));
       localStorage.setItem("accessToken", JSON.stringify(res.data.accessToken));
-      toast("Login Success!");
+      toast.success("Login Success!");
       nav("/app/task");
     } catch (error) {
-      console.log(error);
+      const msg = error.response?.status === 400
+        ? "Invalid email or password."
+        : "Login failed. Please try again.";
+      toast.error(msg);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -92,7 +99,7 @@ const Login = () => {
                     className="font-label text-xs uppercase tracking-widest text-primary mb-2 block group-focus-within:text-tertiary transition-colors"
                     htmlFor="email"
                   >
-                    OPERATOR_ID
+                    EMAIL
                   </label>
                   <input
                     className="w-full bg-surface-container border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 font-body py-4 px-0 transition-all"
@@ -112,7 +119,7 @@ const Login = () => {
                     className="font-label text-xs uppercase tracking-widest text-primary mb-2 block group-focus-within:text-tertiary transition-colors"
                     htmlFor="password"
                   >
-                    ACCESS_KEY
+                    PASSWORD
                   </label>
                   <input
                     className="w-full bg-surface-container border-0 border-b-2 border-outline focus:border-primary focus:ring-0 text-on-surface placeholder:text-on-surface-variant/30 font-body py-4 px-0 transition-all"
@@ -131,8 +138,9 @@ const Login = () => {
                   <button
                     className="w-full bg-[#CCFF00] from-primary to-primary-fixed-dim text-on-primary font-headline font-black py-5 px-8 flex justify-between items-center group transition-all active:translate-x-1 active:translate-y-1 hover:brightness-110"
                     type="submit"
+                    disabled={loading}
                   >
-                    <span className="tracking-widest">BREACH SYSTEM</span>
+                    <span className="tracking-widest">{loading ? "LOGGING IN..." : "LOGIN"}</span>
                     <span className="material-symbols-outlined transition-transform group-hover:translate-x-2">
                       terminal
                     </span>
@@ -162,12 +170,12 @@ const Login = () => {
               </div>
               <footer className="mt-12 text-center">
                 <p className="font-body text-sm text-on-surface-variant">
-                  UNAUTHORIZED?{" "}
+                  YOU DON'T HAVE AN ACCOUNT ?{" "}
                   <Link
                     className="text-tertiary font-bold hover:underline underline-offset-4"
                     to="/register"
                   >
-                    GENERATE_ACCOUNT
+                    REGISTER_NOW!
                   </Link>
                 </p>
               </footer>

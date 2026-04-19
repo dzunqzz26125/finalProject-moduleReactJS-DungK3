@@ -24,14 +24,21 @@ const Register = () => {
     resolver: zodResolver(registerSchema),
   });
   const nav = useNavigate();
+  const [loading, setLoading] = React.useState(false);
   const onHandleSubmit = async (data) => {
     try {
+      setLoading(true);
       const payload = { ...data, role: "user" };
       await api.post("/register", payload);
-      toast("Register Success!");
+      toast.success("Register Success!");
       nav("/login");
     } catch (error) {
-      console.log(error);
+      const msg = error.response?.status === 400
+        ? "Email already exists."
+        : "Registration failed. Please try again.";
+      toast.error(msg);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -152,11 +159,13 @@ const Register = () => {
                 </label>
               </div>
               <div className="pt-6">
-                <button className="w-full bg-primary-container text-on-primary font-headline font-black py-5 text-lg tracking-widest uppercase flex items-center justify-center gap-3 group relative transition-transform active:translate-x-1 active:translate-y-1">
-                  JOIN THE REVOLUTION
-                  <span className="material-symbols-outlined font-bold group-hover:translate-x-2 transition-transform">
-                    arrow_forward
-                  </span>
+                <button type="submit" disabled={loading} className="w-full bg-primary-container text-on-primary font-headline font-black py-5 text-lg tracking-widest uppercase flex items-center justify-center gap-3 group relative transition-transform active:translate-x-1 active:translate-y-1 disabled:opacity-60">
+                  {loading ? "PROCESSING..." : "JOIN THE REVOLUTION"}
+                  {!loading && (
+                    <span className="material-symbols-outlined font-bold group-hover:translate-x-2 transition-transform">
+                      arrow_forward
+                    </span>
+                  )}
                   <div className="absolute -right-1 -bottom-1 w-full h-full border-2 border-[#FF00FF] -z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </button>
               </div>

@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import api from "../mock/api";
-
-const LABELS = ["blue", "green", "red", "yellow", "purple", "pink"];
-const LABEL_COLORS = {
-  blue: "bg-blue-500",
-  green: "bg-green-500",
-  red: "bg-red-500",
-  yellow: "bg-yellow-500",
-  purple: "bg-purple-500",
-  pink: "bg-pink-500",
-};
-const PRIORITIES = ["low", "medium", "high", "critical"];
-const PRIORITY_COLORS = {
-  low: "text-green-400",
-  medium: "text-yellow-400",
-  high: "text-orange-400",
-  critical: "text-red-400",
-};
+import api from "../../mock/api";
+import {
+  LABELS,
+  LABEL_COLORS,
+  PRIORITIES,
+  PRIORITY_COLORS,
+} from "../../constants/taskConstants";
 
 const taskSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -44,15 +33,6 @@ const TaskForm = ({
     task?.assignees || [user?.email || ""],
   );
   const [assigneeInput, setAssigneeInput] = useState("");
-  const [lists, setLists] = useState([]);
-
-  useEffect(() => {
-    if (boardId) {
-      api
-        .get("/lists", { params: { boardId } })
-        .then((res) => setLists(res.data.sort((a, b) => a.order - b.order)));
-    }
-  }, [boardId]);
 
   const {
     register,
@@ -258,26 +238,6 @@ const TaskForm = ({
                 <option value="done">DONE</option>
               </select>
             </div>
-
-            {/* List (if boardId provided) */}
-            {lists.length > 0 && (
-              <div className="space-y-2">
-                <label className="text-primary font-label text-[10px] tracking-[0.2em] uppercase">
-                  List
-                </label>
-                <select
-                  {...register("listId")}
-                  defaultValue={defaultListId || task?.listId || ""}
-                  className="w-full bg-surface-container border-2 border-outline-variant focus:border-primary focus:ring-0 p-3 text-xs font-label uppercase tracking-widest text-on-surface transition-all"
-                >
-                  {lists.map((l) => (
-                    <option key={l.id} value={l.id}>
-                      {l.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
 
             {/* Deadline */}
             <div className="space-y-2">
