@@ -72,11 +72,9 @@ const TaskForm = ({
       assignees,
       createBy: isEdit ? task.createBy : user?.name || user?.email || "",
       createAt: isEdit ? task.createAt : new Date().toISOString().split("T")[0],
-      boardId: boardId || task?.boardId || 1,
-      listId: data.listId
-        ? Number(data.listId)
-        : defaultListId || task?.listId || 1,
-      projectId: task?.projectId || 1,
+      boardId: Number(boardId || task?.boardId || 1),
+      listId: Number(data.listId || defaultListId || task?.listId || 0),
+      projectId: Number(task?.projectId || 1),
     };
     try {
       if (isEdit) {

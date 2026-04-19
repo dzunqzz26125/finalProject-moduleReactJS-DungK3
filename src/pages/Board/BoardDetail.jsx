@@ -111,8 +111,8 @@ const BoardDetail = () => {
       {showForm && (
         <TaskForm
           task={editTask}
-          defaultListId={defaultListId}
-          boardId={boardId}
+          defaultListId={defaultListId || lists[0]?.id}
+          boardId={Number(boardId)}
           onClose={handleFormClose}
         />
       )}

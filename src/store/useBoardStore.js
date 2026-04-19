@@ -20,10 +20,11 @@ const useBoardStore = create((set, get) => ({
   setFilterPriority: (p) => set({ filterPriority: p }),
 
   fetchBoard: async (boardId) => {
+    const id = Number(boardId);
     const [boardRes, listsRes, tasksRes] = await Promise.all([
-      api.get(`/boards/${boardId}`),
-      api.get("/lists", { params: { boardId } }),
-      api.get("/tasks", { params: { boardId } }),
+      api.get(`/boards/${id}`),
+      api.get("/lists", { params: { boardId: id } }),
+      api.get("/tasks", { params: { boardId: id } }),
     ]);
     set({
       board: boardRes.data,
@@ -33,8 +34,16 @@ const useBoardStore = create((set, get) => ({
   },
 
   addList: async (name, boardId) => {
-    const res = await api.post("/lists", { name, boardId });
+    const res = await api.post("/lists", { name, boardId: Number(boardId) });
     set((state) => ({ lists: [...state.lists, res.data] }));
+  },
+
+  renameList: async (listId, name) => {
+    if (!name.trim()) return;
+    await api.patch(`/lists/${listId}`, { name: name.trim() });
+    set((state) => ({
+      lists: state.lists.map((l) => (l.id === listId ? { ...l, name: name.trim() } : l)),
+    }));
   },
 
   handleDeleteList: async (listId) => {

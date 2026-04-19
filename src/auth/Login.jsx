@@ -31,11 +31,12 @@ const Login = () => {
       localStorage.setItem("users", JSON.stringify(res.data.user));
       localStorage.setItem("accessToken", JSON.stringify(res.data.accessToken));
       toast.success("Login Success!");
-      nav("/app/task");
+      nav("/app/workspaces");
     } catch (error) {
-      const msg = error.response?.status === 400
-        ? "Invalid email or password."
-        : "Login failed. Please try again.";
+      const msg =
+        error.response?.status === 400
+          ? "Invalid email or password."
+          : "Login failed. Please try again.";
       toast.error(msg);
     } finally {
       setLoading(false);
@@ -140,7 +141,9 @@ const Login = () => {
                     type="submit"
                     disabled={loading}
                   >
-                    <span className="tracking-widest">{loading ? "LOGGING IN..." : "LOGIN"}</span>
+                    <span className="tracking-widest">
+                      {loading ? "LOGGING IN..." : "LOGIN"}
+                    </span>
                     <span className="material-symbols-outlined transition-transform group-hover:translate-x-2">
                       terminal
                     </span>

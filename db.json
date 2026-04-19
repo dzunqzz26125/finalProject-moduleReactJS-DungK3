@@ -25,11 +25,27 @@
   "workspaces": [
     {
       "id": 1,
-      "name": "Project Alpha",
+      "name": "Team A",
       "description": "Main workspace",
       "ownerId": 1,
       "color": "#0079bf",
       "createdAt": "2026-01-01"
+    },
+    {
+      "color": "#89609e",
+      "ownerId": 2,
+      "name": "Vũ Hoàng Dũng",
+      "description": "suy time",
+      "createdAt": "2026-04-19",
+      "id": 2
+    },
+    {
+      "color": "#4bbf6b",
+      "ownerId": 1,
+      "name": "Team B",
+      "description": "Project of team B",
+      "createdAt": "2026-04-19",
+      "id": 3
     }
   ],
   "workspace_members": [
@@ -44,6 +60,18 @@
       "workspaceId": 1,
       "userId": 2,
       "role": "member"
+    },
+    {
+      "workspaceId": 2,
+      "userId": 2,
+      "role": "admin",
+      "id": 3
+    },
+    {
+      "workspaceId": 3,
+      "userId": 1,
+      "role": "admin",
+      "id": 4
     }
   ],
   "boards": [
@@ -62,6 +90,22 @@
       "createdBy": 1,
       "createdAt": "2026-04-16",
       "id": 2
+    },
+    {
+      "color": "#51e898",
+      "workspaceId": 2,
+      "name": "Vũ Hoàng Dũng",
+      "createdBy": 2,
+      "createdAt": "2026-04-19",
+      "id": 3
+    },
+    {
+      "color": "#51e898",
+      "workspaceId": 3,
+      "name": "Project 1",
+      "createdBy": 1,
+      "createdAt": "2026-04-19",
+      "id": 5
     }
   ],
   "lists": [
@@ -106,6 +150,47 @@
       "name": "In Progress",
       "order": 1,
       "id": 7
+    },
+    {
+      "boardId": 3,
+      "name": "Todo",
+      "order": 0,
+      "id": 8
+    },
+    {
+      "boardId": 3,
+      "name": "In Progress",
+      "order": 1,
+      "id": 9
+    },
+    {
+      "boardId": 3,
+      "name": "Done",
+      "order": 2,
+      "id": 10
+    },
+    {
+      "name": "New List",
+      "boardId": 3,
+      "id": 11
+    },
+    {
+      "boardId": 5,
+      "name": "Todo",
+      "order": 0,
+      "id": 15
+    },
+    {
+      "boardId": 5,
+      "name": "In Progress",
+      "order": 1,
+      "id": 16
+    },
+    {
+      "boardId": 5,
+      "name": "Done",
+      "order": 2,
+      "id": 17
     }
   ],
   "tasks": [
@@ -187,6 +272,22 @@
       "listId": 5,
       "projectId": 1,
       "id": 3
+    },
+    {
+      "title": "learn english",
+      "description": "Learn more vocabulary and structure of English",
+      "deadline": "2026-04-19",
+      "priority": "medium",
+      "status": "todo",
+      "tags": "update myself day by day",
+      "labels": ["green"],
+      "assignees": ["vuhoangdung261205@gmail.com"],
+      "createBy": "Member One",
+      "createAt": "2026-04-19",
+      "boardId": 3,
+      "listId": 8,
+      "projectId": 1,
+      "id": 4
     }
   ],
   "comments": [
@@ -218,5 +319,15 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "activities": [
+    {
+      "taskId": 9,
+      "userId": 2,
+      "userName": "Member One",
+      "action": "created task",
+      "createdAt": "2026-04-19T11:25:10.010Z",
+      "id": 1
+    }
+  ]
 }
