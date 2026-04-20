@@ -33,9 +33,10 @@ const Register = () => {
       toast.success("Register Success!");
       nav("/login");
     } catch (error) {
-      const msg = error.response?.status === 400
-        ? "Email already exists."
-        : "Registration failed. Please try again.";
+      const msg =
+        error.response?.status === 400
+          ? "Email already exists."
+          : "Registration failed. Please try again.";
       toast.error(msg);
     } finally {
       setLoading(false);
@@ -98,19 +99,19 @@ const Register = () => {
                 </label>
                 <input
                   {...register("name")}
-                  className="w-full bg-surface-container-low border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-on-surface/20"
+                  className="w-full bg-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-black/20"
                   placeholder="e.g. ZERO_ONE"
                   type="text"
                 />
                 {errors.name && <p>{errors.name?.message}</p>}
               </div>
               <div className="group">
-                <label className="block font-label text-[10px] tracking-[0.2em] text-outline uppercase mb-2 group-focus-within:text-secondary-fixed transition-colors">
+                <label className="block font-label text-[10px] tracking-[0.2em] text-outline uppercase mb-2 group-focus-within:text-secondary-fixed transition-colors ">
                   Secure Email Address
                 </label>
                 <input
                   {...register("email")}
-                  className="w-full bg-surface-container-low border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-on-surface/20"
+                  className="w-full bg-surface-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-black/20"
                   placeholder="protocol@anarchy.os"
                   type="email"
                 />
@@ -123,7 +124,7 @@ const Register = () => {
                 <div className="relative">
                   <input
                     {...register("password")}
-                    className="w-full bg-surface-container-low border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-on-surface/20"
+                    className="w-full bg-surface-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-black/20"
                     placeholder="••••••••••••"
                     type="password"
                   />
@@ -159,7 +160,11 @@ const Register = () => {
                 </label>
               </div>
               <div className="pt-6">
-                <button type="submit" disabled={loading} className="w-full bg-primary-container text-on-primary font-headline font-black py-5 text-lg tracking-widest uppercase flex items-center justify-center gap-3 group relative transition-transform active:translate-x-1 active:translate-y-1 disabled:opacity-60">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-primary-container text-on-primary font-headline font-black py-5 text-lg tracking-widest uppercase flex items-center justify-center gap-3 group relative transition-transform active:translate-x-1 active:translate-y-1 disabled:opacity-60"
+                >
                   {loading ? "PROCESSING..." : "JOIN THE REVOLUTION"}
                   {!loading && (
                     <span className="material-symbols-outlined font-bold group-hover:translate-x-2 transition-transform">
