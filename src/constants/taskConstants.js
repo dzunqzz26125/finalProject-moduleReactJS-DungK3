@@ -25,3 +25,19 @@ export const LIST_STATUS_MAP = {
   review: "review",
   done: "done",
 };
+
+export const COLUMNS = [
+  { status: "todo", label: "To Do", color: "border-blue-400" },
+  { status: "in_progress", label: "In Progress", color: "border-yellow-400" },
+  { status: "review", label: "Review", color: "border-purple-400" },
+  { status: "done", label: "Done", color: "border-green-400" },
+];
+
+export const STATUS_OPTIONS = [
+  { value: "todo", label: "To Do" },
+  { value: "in_progress", label: "In Progress" },
+  { value: "review", label: "Review" },
+  { value: "done", label: "Done" },
+];
+
+

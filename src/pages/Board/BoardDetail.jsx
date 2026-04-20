@@ -20,11 +20,28 @@ import useTaskStore from "../../store/useTaskStore";
 const BoardDetail = () => {
   const { boardId, workspaceId } = useParams();
 
-  const { board, lists, fetchBoard, addList, showForm, editTask, detailTask, defaultListId, setShowForm, setEditTask, setDetailTask } = useBoardStore();
+  const { board, lists, fetchBoard, addList, showForm, editTask, detailTask, defaultListId, setShowForm, setEditTask, setDetailTask, searchQuery, filterPriority } = useBoardStore();
   const { activeTask, setActiveTask, getTasksByList, moveTaskLocal, reorderTasks } = useTaskStore();
+
+  const getFilteredTasksByList = (listId) => {
+    return getTasksByList(listId).filter((t) => {
+      const q = searchQuery.toLowerCase();
+      const matchSearch =
+        !q ||
+        t.title.toLowerCase().includes(q) ||
+        (t.assignees || []).some((a) => a.toLowerCase().includes(q)) ||
+        (t.tags || "").toLowerCase().includes(q);
+      const matchPriority = filterPriority === "all" || t.priority === filterPriority;
+      return matchSearch && matchPriority;
+    });
+  };
 
   useEffect(() => {
     fetchBoard(boardId);
+    return () => {
+      useBoardStore.getState().setSearchQuery("");
+      useBoardStore.getState().setFilterPriority("all");
+    };
   }, [boardId]);
 
   const sensors = useSensors(
@@ -40,9 +57,12 @@ const BoardDetail = () => {
     const { active, over } = e;
     if (!over) return;
     const task = useTaskStore.getState().tasksById[active.id];
-    const targetListId = over.id.toString().startsWith("list-")
-      ? Number(over.id.toString().replace("list-", ""))
-      : useTaskStore.getState().tasksById[over.id]?.listId;
+    const overId = over.id;
+    const overTask = useTaskStore.getState().tasksById[overId];
+    // over là DroppableList (id là số listId) hoặc task card
+    const targetListId = typeof overId === "number" && !overTask
+      ? overId
+      : overTask?.listId;
     if (targetListId && task?.listId !== targetListId) {
       moveTaskLocal(task.id, targetListId);
     }
@@ -52,10 +72,11 @@ const BoardDetail = () => {
     const { active, over } = e;
     setActiveTask(null);
     if (!over) return;
-    const overId = over.id.toString();
-    const targetListId = overId.startsWith("list-")
-      ? Number(overId.replace("list-", ""))
-      : useTaskStore.getState().tasksById[over.id]?.listId;
+    const overId = over.id;
+    const overTask = useTaskStore.getState().tasksById[overId];
+    const targetListId = typeof overId === "number" && !overTask
+      ? overId
+      : overTask?.listId;
     await reorderTasks(targetListId, active.id, over.id);
   };
 
@@ -81,7 +102,7 @@ const BoardDetail = () => {
         >
           <div className="flex gap-4 items-start min-w-max">
             {lists.map((list) => (
-              <BoardColumn key={list.id} list={list} tasks={getTasksByList(list.id)} boardId={boardId} />
+              <BoardColumn key={list.id} list={list} tasks={getFilteredTasksByList(list.id)} boardId={boardId} />
             ))}
             <button
               onClick={() => addList("New List", boardId)}
