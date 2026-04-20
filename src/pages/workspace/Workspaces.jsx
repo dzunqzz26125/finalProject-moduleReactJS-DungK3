@@ -47,9 +47,23 @@ const Workspaces = () => {
 
   const getVisibleWorkspaces = () => {
     if (!currentUser?.id) return [];
-    return workspaces.filter((ws) =>
-      members.some((m) => sameId(m.workspaceId, ws.id) && sameId(m.userId, currentUser.id))
-    );
+    return workspaces.filter((ws) => {
+      // Hiển thị nếu là thành viên workspace
+      const isMember = members.some(
+        (m) => sameId(m.workspaceId, ws.id) && sameId(m.userId, currentUser.id)
+      );
+      if (isMember) return true;
+      // Hiển thị nếu có task được assign trong workspace này
+      const wsBoards = boards.filter((b) => sameId(b.workspaceId, ws.id));
+      return wsBoards.some((b) =>
+        tasks.some(
+          (t) =>
+            sameId(t.boardId, b.id) &&
+            Array.isArray(t.assignees) &&
+            t.assignees.includes(currentUser.email)
+        )
+      );
+    });
   };
 
   const getUserRole = (workspaceId) => {
@@ -71,7 +85,7 @@ const Workspaces = () => {
     fetchAll();
   };
 
-  const getMemberUser = (userId) => users.find((u) => u.id === userId);
+  const getMemberUser = (userId) => users.find((u) => sameId(u.id, userId));
   const visibleWorkspaces = getVisibleWorkspaces();
 
   return (
@@ -107,9 +121,12 @@ const Workspaces = () => {
           const wsBoards = boards.filter((b) => {
             if (!sameId(b.workspaceId, ws.id)) return false;
             if (role === "admin") return true;
-            // member/viewer: chỉ hiển thị board có task được assign cho user này
+            // member/viewer/guest: chỉ hiển thị board có task được assign cho user này
             return tasks.some(
-              (t) => sameId(t.boardId, b.id) && Array.isArray(t.assignees) && t.assignees.includes(currentUser.email)
+              (t) =>
+                sameId(t.boardId, b.id) &&
+                Array.isArray(t.assignees) &&
+                t.assignees.includes(currentUser.email)
             );
           });
           const wsMembers = members.filter((m) => sameId(m.workspaceId, ws.id));

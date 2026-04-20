@@ -44,17 +44,6 @@ const Register = () => {
   };
   return (
     <div className="bg-background text-on-surface font-body min-h-screen flex flex-col overflow-x-hidden">
-      {/* <header className="fixed top-0 w-full z-50 flex justify-between items-center h-16 px-8 bg-surface/80 backdrop-blur-md border-b-2 border-primary-container">
-        <div className="font-headline text-2xl font-black tracking-tighter text-primary-container">
-          ANARCHY.OS
-        </div>
-        <div className="flex items-center gap-6">
-          <span className="font-label text-[10px] tracking-[0.3em] text-on-surface/50">
-            SYSTEM_AUTH_V2.01
-          </span>
-          <div className="w-2 h-2 bg-primary-container animate-pulse"></div>
-        </div>
-      </header> */}
       <main className="grow flex items-center justify-center pt-4 pb-12 px-6">
         <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 gap-0 border-2 border-outline-variant/30">
           <div className="hidden lg:flex lg:col-span-7 relative bg-surface-container-lowest overflow-hidden border-r-2 border-outline-variant/30 flex-col justify-end p-12">
@@ -99,7 +88,7 @@ const Register = () => {
                 </label>
                 <input
                   {...register("name")}
-                  className="w-full bg-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-black/20"
+                  className="w-full bg-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-black font-body p-3 transition-all placeholder:text-black/20"
                   placeholder="e.g. ZERO_ONE"
                   type="text"
                 />
@@ -111,7 +100,7 @@ const Register = () => {
                 </label>
                 <input
                   {...register("email")}
-                  className="w-full bg-surface-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-black/20"
+                  className="w-full bg-surface-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-black font-body p-3 transition-all placeholder:text-black/20"
                   placeholder="protocol@anarchy.os"
                   type="email"
                 />
@@ -124,7 +113,7 @@ const Register = () => {
                 <div className="relative">
                   <input
                     {...register("password")}
-                    className="w-full bg-surface-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-on-surface font-body p-3 transition-all placeholder:text-black/20"
+                    className="w-full bg-surface-slate-200 border-0 border-b-2 border-outline focus:border-primary-container focus:ring-0 text-black font-body p-3 transition-all placeholder:text-black/20"
                     placeholder="••••••••••••"
                     type="password"
                   />
