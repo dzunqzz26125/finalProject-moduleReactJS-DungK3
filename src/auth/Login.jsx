@@ -158,13 +158,13 @@ const Login = () => {
                 <div className="h-0.5 grow bg-outline-variant opacity-30"></div>
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <button className="flex items-center justify-center gap-3 border-2 border-outline py-4 font-label text-xs font-bold tracking-widest hover:border-primary transition-colors hover:bg-surface-container-high uppercase">
+                <button className="flex items-center bg-slate-200 justify-center gap-3 border-2 border-outline py-4 font-label text-xs font-bold tracking-widest hover:border-primary transition-colors hover:bg-surface-container-high uppercase">
                   <span className="material-symbols-outlined text-base">
                     cloud
                   </span>
                   Google
                 </button>
-                <button className="flex items-center justify-center gap-3 border-2 border-outline py-4 font-label text-xs font-bold tracking-widest hover:border-primary transition-colors hover:bg-surface-container-high uppercase">
+                <button className="flex items-center bg-slate-200 justify-center gap-3 border-2 border-outline py-4 font-label text-xs font-bold tracking-widest hover:border-primary transition-colors hover:bg-surface-container-high uppercase">
                   <span className="material-symbols-outlined text-base">
                     grid_view
                   </span>
